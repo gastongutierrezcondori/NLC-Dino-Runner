@@ -2,6 +2,7 @@ import pygame
 from pygame.sprite import Sprite
 from utils.constants import RUNNING, DUCKING, JUMPING
 
+
 class Dinosaur(Sprite):
     x_POS = 80
     y_POS = 310
@@ -27,11 +28,11 @@ class Dinosaur(Sprite):
         if self.dino_run:
             self.run()
 
-        if user_input[pygame.k_DOWN] and not self.dino_jump:
+        if user_input[pygame.K_DOWN] and not self.dino_jump:
             self.dino_run = False
             self.dino_duck = True
             self.dino_jump = False
-        elif user_input[pygame.k_UP] and not self.dino_jump:
+        elif user_input[pygame.K_UP] and not self.dino_jump:
             self.dino_run = False
             self.dino_duck = False
             self.dino_jump = True
