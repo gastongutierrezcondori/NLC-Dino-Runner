@@ -3,9 +3,11 @@ import pygame
 from utils.constants import HEART, LIST_LIVES
 from pygame.sprite import Sprite
 
+
 class Lives(Sprite):
     X_POS = 900
     Y_POS = 20
+
     def __init__(self):
         self.Image = HEART
         self.rect = self.Image.get_rect()
@@ -14,7 +16,6 @@ class Lives(Sprite):
         self.lives = LIST_LIVES
 
     def update(self, game):
-        print(game.lives)
         if game.lives > 0:
             game.lives -= 1
             self.take_life(game.lives, game)
@@ -22,6 +23,8 @@ class Lives(Sprite):
             pygame.time.delay(500)
             game.playing = False
             game.death_count += 1
+            game.previus_points = game.points
+
             game.points = 0
 
     def draw(self, screen, game):

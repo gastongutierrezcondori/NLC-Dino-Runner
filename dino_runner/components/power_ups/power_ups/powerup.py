@@ -2,7 +2,6 @@ import random
 
 from utils.constants import SCREEN_HEIGHT
 
-
 from pygame.sprite import Sprite
 
 

@@ -2,6 +2,7 @@ import random
 import pygame
 
 from components.power_ups.power_ups.shield import Shield
+from components.power_ups.power_ups.hammer import Hammer
 
 
 class PowerUpManager:
@@ -25,20 +26,25 @@ class PowerUpManager:
                 print("generating powerup")
                 self.when_appears = random.randint(self.when_appears + 200, 500 + self.when_appears)
                 self.power_ups.append(Shield())
+                self.power_ups.append(Hammer())
+
         return self.power_ups
 
     def update(self, points, game_speed, player):
         self.generate_power_ups(points)
         for power_up in self.power_ups:
             power_up.update(game_speed, self.power_ups)
+
             if player.dino_rect.colliderect(power_up.rect):
-                power_up.start_time = pygame.time.get_ticks ()
+                power_up.start_time = pygame.time.get_ticks()
                 player.shield = True
+                player.hammer = True
                 player.show_text = True
                 player.type = power_up.type
                 power_up.start_time = pygame.time.get_ticks()
                 time_random = random.randrange(5, 8)
                 player.shield_time_up = power_up.start_time + (time_random * 1000)
+                player.hammer_time_up = power_up.start_time + (time_random * 1000)
                 self.power_ups.remove(power_up)
 
     def draw(self, screen):
